@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cliente;
+use Carbon\Carbon;
 
 class Venda extends Model
 {
@@ -30,5 +31,11 @@ class Venda extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'id_cliente');
+    }
+
+    // Função para converter o padrão de data americano para o brasileiro
+    public function getDataFormatadaAttribute()
+    {
+        return Carbon::parse($this->data)->format('d/m/Y');
     }
 }
