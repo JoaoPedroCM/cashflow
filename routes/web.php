@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PainelController;
+use App\Http\Controllers\TransacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,10 @@ use App\Http\Controllers\PainelController;
 |
 */
 
+// ===========================
+// ROTAS DE AUTENTICAÇÃO
+// ===========================
+
 // Mostrar o formulário de login na raiz
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 
@@ -24,9 +29,18 @@ Route::post('/login', [AuthController::class, 'login']);
 // Processar o logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Carrega a view painel
+
+// ===========================
+// ROTAS DIRETAS (sem lógica)
+// ===========================
+
 Route::get('/painel', function () {
     return view('painel');
 })->middleware('auth');
 
-Route::get('/painel', [PainelController::class, 'index'])->middleware('auth');
+
+// ===========================
+// ROTAS COM CONTROLLER (com lógica)
+// ===========================
+
+Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');

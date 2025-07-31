@@ -35,7 +35,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/painel">CashFlow</a>
+                <a class="navbar-brand" href="painel">CashFlow</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -55,7 +55,7 @@
                             <a class="nav-link" href="#">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Transações</a>
+                            <a class="nav-link" href="transacoes">Transações</a>
                         </li>
                         <!-- Links específicos para usuário do tipo Master -->
                         @if(Auth::user()->tipo_usuario === 'master')
