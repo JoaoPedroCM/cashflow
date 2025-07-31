@@ -16,21 +16,21 @@ class ClienteSeeder extends Seeder
         Cliente::create([
             'nome' => 'Ademir Santos',
             'email' => 'ademirsantos@exemplo.com',
-            'numero' => '940404040',
+            'numero' => '11940404040',
             'endereco' => 'Avenida Marlon Andrade, 973',
         ]);
 
         Cliente::create([
             'nome' => 'Marcia Lemes',
             'email' => 'marcialemes@exemplo.com',
-            'numero' => '960606060',
+            'numero' => '11960606060',
             'endereco' => 'Rua Paulo Souza, 137',
         ]);
 
         Cliente::create([
             'nome' => 'Rosangela Pereira',
             'email' => 'rosangelapereira@exemplo.com',
-            'numero' => '950505050',
+            'numero' => '41950505050',
             'endereco' => 'Avenida Marlon Andrade, 163',
         ]);
     }

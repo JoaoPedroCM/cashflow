@@ -52,7 +52,7 @@
                     <!-- Menu à esquerda -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Clientes</a>
+                            <a class="nav-link" href="clientes">Clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="transacoes">Transações</a>

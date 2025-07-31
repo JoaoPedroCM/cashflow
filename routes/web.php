@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PainelController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\TransacaoController;
 
 /*
@@ -44,3 +44,4 @@ Route::get('/painel', function () {
 // ===========================
 
 Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
