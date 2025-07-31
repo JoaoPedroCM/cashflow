@@ -81,7 +81,7 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {{ Auth::user()->nome }}
+                                {{ Auth::user()->nome }} ({{Auth::user()->tipo_usuario}})
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
