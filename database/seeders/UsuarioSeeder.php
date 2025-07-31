@@ -14,12 +14,12 @@ class UsuarioSeeder extends Seeder
     public function run(): void
     {
         Usuario::create([
-            'nome' => 'Master',
-            'email' => 'master@exemplo.com',
-            'senha' => 'master123',
+            'nome' => 'joao Pedro',
+            'email' => 'joaopedro@exemplo.com',
+            'senha' => 'joao123',
             'numero' => '999999999',
             'endereco' => 'Rua Principal, 123',
-            'tipo_usuario' => 'administrador',
+            'tipo_usuario' => 'master',
         ]);
 
         Usuario::create([
@@ -28,7 +28,7 @@ class UsuarioSeeder extends Seeder
             'senha' => 'henry123',
             'numero' => '999999999',
             'endereco' => 'Rua Alameda, 123',
-            'tipo_usuario' => 'auxiliar',
+            'tipo_usuario' => 'comum',
         ]);
 
         Usuario::create([
@@ -37,7 +37,7 @@ class UsuarioSeeder extends Seeder
             'senha' => 'rosa123',
             'numero' => '999999999',
             'endereco' => 'Avenida Senador Marcos Costa, 321',
-            'tipo_usuario' => 'funcionario',
+            'tipo_usuario' => 'comum',
         ]);
     }
 }

@@ -9,15 +9,15 @@
     <table class="table table-striped text-center">
         <thead>
             <tr>
-                <th class="text-success">Cliente</th>
-                <th class="text-success">Data</th>
-                <th class="text-success">Moeda</th>
-                <th class="text-success">Valor</th>
-                <th class="text-success">Valor Convertido</th>
-                <th class="text-success">Descrição</th>
-                <th class="text-success">Forma de Pagamento</th>
-                <th class="text-success">Satus</th>
-                <th colspan="2" class="text-success">Opções</th>
+                <th class="text-primary">Cliente</th>
+                <th class="text-primary">Data</th>
+                <th class="text-primary">Moeda</th>
+                <th class="text-primary">Valor</th>
+                <th class="text-primary">Valor Convertido</th>
+                <th class="text-primary">Descrição</th>
+                <th class="text-primary">Forma de Pagamento</th>
+                <th class="text-primary">Satus</th>
+                <th colspan="2" class="text-primary">Opções</th>
             </tr>
         </thead>
         

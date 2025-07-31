@@ -57,6 +57,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Transações</a>
                         </li>
+                        <!-- Links específicos para usuário do tipo Master -->
+                        @if(Auth::user()->tipo_usuario === 'master')
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Usuários</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Alterações</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Configurações</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Dropdown usuário à direita -->
