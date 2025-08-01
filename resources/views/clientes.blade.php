@@ -3,7 +3,11 @@
 @section('title', 'Clientes')
 
 @section('content')
-    <h1 class="display-6">Clientes</h1>
+    <h1 class="display-6">Clientes
+        <a href="novo_cliente" class="btn btn-success">
+            Novo Cliente<i class="bi bi-plus"></i>
+        </a>
+    </h1>
     
 
     <table class="table table-striped text-center">

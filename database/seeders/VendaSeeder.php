@@ -19,9 +19,9 @@ class VendaSeeder extends Seeder
             'moeda' => 'BRL',
             'valor' => 1989.90,
             'valor_convertido' => null,
-            'descricao' => 'Smartphone Xiaomi Poco x6',
-            'forma_pgto' => 'Pix',
-            'status' => 'Pago',
+            'descricao' => 'smartphone xiaomi poco x6',
+            'forma_pgto' => 'pix',
+            'status' => 'pago',
         ]);
 
         Venda::create([
@@ -30,9 +30,9 @@ class VendaSeeder extends Seeder
             'moeda' => 'BRL',
             'valor' => 129.90,
             'valor_convertido' => null,
-            'descricao' => 'Garrafa Termica Termolar',
-            'forma_pgto' => 'Dinheiro',
-            'status' => 'Pago',
+            'descricao' => 'garrafa termica termolar',
+            'forma_pgto' => 'dinheiro',
+            'status' => 'pago',
         ]);
 
         Venda::create([
@@ -41,9 +41,9 @@ class VendaSeeder extends Seeder
             'moeda' => 'BRL',
             'valor' => 659.90,
             'valor_convertido' => null,
-            'descricao' => 'Colete Feminino Nike',
-            'forma_pgto' => 'Em aberto',
-            'status' => 'Pendente',
+            'descricao' => 'colete feminino nike',
+            'forma_pgto' => 'em aberto',
+            'status' => 'pendente',
         ]);
     }
 }

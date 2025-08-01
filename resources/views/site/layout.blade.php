@@ -27,7 +27,6 @@
         table td, table th {
             text-align: center;
             vertical-align: middle;
-            text-transform: uppercase;
         }
     </style>
 </head>

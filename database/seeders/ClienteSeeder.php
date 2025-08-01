@@ -14,24 +14,24 @@ class ClienteSeeder extends Seeder
     public function run(): void
     {
         Cliente::create([
-            'nome' => 'Ademir Santos',
+            'nome' => 'ademir santos',
             'email' => 'ademirsantos@exemplo.com',
             'numero' => '11940404040',
-            'endereco' => 'Avenida Marlon Andrade, 973',
+            'endereco' => 'avenida marlon andrade, 973',
         ]);
 
         Cliente::create([
-            'nome' => 'Marcia Lemes',
+            'nome' => 'marcia lemes',
             'email' => 'marcialemes@exemplo.com',
             'numero' => '11960606060',
-            'endereco' => 'Rua Paulo Souza, 137',
+            'endereco' => 'rua paulo souza, 137',
         ]);
 
         Cliente::create([
-            'nome' => 'Rosangela Pereira',
+            'nome' => 'rosangela pereira',
             'email' => 'rosangelapereira@exemplo.com',
             'numero' => '41950505050',
-            'endereco' => 'Avenida Marlon Andrade, 163',
+            'endereco' => 'avenida marlon andrade, 163',
         ]);
     }
 }

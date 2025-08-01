@@ -39,6 +39,10 @@ Route::get('/painel', function () {
     return view('painel');
 })->middleware('auth');
 
+Route::get('/novo_cliente', function () {
+    return view('novo_cliente');
+});
+
 
 // ===========================
 // ROTAS COM CONTROLLER (com lógica)
@@ -46,4 +50,5 @@ Route::get('/painel', function () {
 
 Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');

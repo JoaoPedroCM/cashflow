@@ -10,6 +10,13 @@ class Cliente extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nome',
+        'email',
+        'numero',
+        'endereco',
+    ];
+
     // Função para converter o padrão de data americano para o brasileiro
     public function getCreatedAtFormatadoAttribute()
     {

@@ -21,7 +21,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        // Pode retornar a view do formulário de novo cliente, ex:
+        // return view('novo_cliente');
     }
 
     /**
@@ -29,7 +30,22 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'numero' => 'required|string|max:20',
+            'endereco' => 'nullable|string|max:255',
+        ]);
+
+        $data = [];
+        $data['nome'] = strtolower($this->removeAcentos($validated['nome']));
+        $data['email'] = isset($validated['email']) ? strtolower($validated['email']) : null;
+        $data['numero'] = $validated['numero']; // Não modifica número
+        $data['endereco'] = isset($validated['endereco']) ? strtolower($this->removeAcentos($validated['endereco'])) : null;
+
+        Cliente::create($data);
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente cadastrado!');
     }
 
     /**
@@ -62,5 +78,62 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
+    }
+
+    /**
+     * Remove acentos e caracteres especiais da string.
+     */
+    private function removeAcentos($string)
+    {
+        $mapa = [
+            'á' => 'a',
+            'à' => 'a',
+            'ã' => 'a',
+            'â' => 'a',
+            'ä' => 'a',
+            'é' => 'e',
+            'è' => 'e',
+            'ê' => 'e',
+            'ë' => 'e',
+            'í' => 'i',
+            'ì' => 'i',
+            'î' => 'i',
+            'ï' => 'i',
+            'ó' => 'o',
+            'ò' => 'o',
+            'õ' => 'o',
+            'ô' => 'o',
+            'ö' => 'o',
+            'ú' => 'u',
+            'ù' => 'u',
+            'û' => 'u',
+            'ü' => 'u',
+            'ç' => 'c',
+            'Á' => 'a',
+            'À' => 'a',
+            'Ã' => 'a',
+            'Â' => 'a',
+            'Ä' => 'a',
+            'É' => 'e',
+            'È' => 'e',
+            'Ê' => 'e',
+            'Ë' => 'e',
+            'Í' => 'i',
+            'Ì' => 'i',
+            'Î' => 'i',
+            'Ï' => 'i',
+            'Ó' => 'o',
+            'Ò' => 'o',
+            'Õ' => 'o',
+            'Ô' => 'o',
+            'Ö' => 'o',
+            'Ú' => 'u',
+            'Ù' => 'u',
+            'Û' => 'u',
+            'Ü' => 'u',
+            'Ç' => 'c'
+        ];
+
+        return strtr($string, $mapa);
     }
 }
