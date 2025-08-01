@@ -60,7 +60,7 @@
                         <!-- Links específicos para usuário do tipo Master -->
                         @if(Auth::user()->tipo_usuario === 'master')
                             <li class="nav-item">
-                                <a href="" class="nav-link">Usuários</a>
+                                <a href="usuarios" class="nav-link">Usuários</a>
                             </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">Alterações</a>
