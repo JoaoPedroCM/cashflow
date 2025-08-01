@@ -3,6 +3,14 @@
 @section('title', 'Clientes')
 
 @section('content')
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        </div>
+    @endif
+
     <h1 class="display-6">Clientes
         <a href="novo_cliente" class="btn btn-success">
             Novo Cliente<i class="bi bi-plus"></i>
@@ -32,7 +40,15 @@
                 <td>{{$cliente->created_at_formatado}}</td>
                 <td>{{$cliente->updated_at_formatado}}</td>
                 <td><a href="" title="Editar cliente"><i class="bi bi-pencil-square text-primary"></i></a></td>
-                <td><a href="" title="Excluir cliente"><i class="bi bi-trash3-fill text-danger"></i></a></td>
+                <td>
+                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-link p-0" title="Excluir cliente">
+                            <i class="bi bi-trash3-fill text-danger"></i>
+                        </button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>

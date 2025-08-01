@@ -15,6 +15,7 @@ class Cliente extends Model
         'email',
         'numero',
         'endereco',
+        'status',
     ];
 
     // Função para converter o padrão de data americano para o brasileiro

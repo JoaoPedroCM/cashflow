@@ -12,7 +12,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->get();
+        $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'ativo')->get();
         return view('clientes', compact('clientes'));
     }
 
@@ -77,7 +77,9 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->status = "inativo";
+        $cliente->save();
+        return redirect()->back()->with('success', 'Cliente excluído com sucesso!');
     }
 
     /**

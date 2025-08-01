@@ -51,4 +51,5 @@ Route::get('/novo_cliente', function () {
 Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
