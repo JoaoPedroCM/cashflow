@@ -53,11 +53,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="clientes">Clientes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="transacoes">Transações</a>
-                        </li>
                         <!-- Links específicos para usuário do tipo Master -->
                         @if(Auth::user()->tipo_usuario === 'master')
+                            <li class="nav-item">
+                                <a href="" class="nav-link">Clientes Inativos</a>
+                            </li>
                             <li class="nav-item">
                                 <a href="usuarios" class="nav-link">Usuários</a>
                             </li>
@@ -68,6 +68,9 @@
                                 <a href="" class="nav-link">Configurações</a>
                             </li>
                         @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="transacoes">Transações</a>
+                        </li>
                     </ul>
 
                     <!-- Dropdown usuário à direita -->

@@ -18,6 +18,7 @@ class ClienteSeeder extends Seeder
             'email' => 'ademirsantos@exemplo.com',
             'numero' => '11940404040',
             'endereco' => 'avenida marlon andrade, 973',
+            'status' => 'ativo',
         ]);
 
         Cliente::create([
@@ -25,6 +26,7 @@ class ClienteSeeder extends Seeder
             'email' => 'marcialemes@exemplo.com',
             'numero' => '11960606060',
             'endereco' => 'rua paulo souza, 137',
+            'status' => 'ativo',
         ]);
 
         Cliente::create([
@@ -32,6 +34,7 @@ class ClienteSeeder extends Seeder
             'email' => 'rosangelapereira@exemplo.com',
             'numero' => '41950505050',
             'endereco' => 'avenida marlon andrade, 163',
+            'status' => 'ativo',
         ]);
     }
 }
