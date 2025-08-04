@@ -39,7 +39,13 @@
                 <td>{{$cliente->endereco}}</td>
                 <td>{{$cliente->created_at_formatado}}</td>
                 <td>{{$cliente->updated_at_formatado}}</td>
-                <td><a href="" title="Editar cliente"><i class="bi bi-pencil-square text-primary"></i></a></td>
+
+                <td>
+                    <a href="{{ route('clientes.edit', $cliente->id) }}" title="Editar cliente" onclick="return confirm('Editar os dados de {{$cliente->nome}} ?');" class="btn btn-link p-0">
+                        <i class="bi bi-pencil-square text-primary"></i>
+                    </a>
+                </td>
+
                 <td>
                     <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja desativar este cliente?');">
                         @csrf

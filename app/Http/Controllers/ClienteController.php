@@ -67,13 +67,32 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('editar_cliente', compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Cliente $cliente)
+    {
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'numero' => 'required|string|max:20',
+            'endereco' => 'nullable|string|max:255',
+        ]);
+
+        $cliente->nome = strtolower($this->removeAcentos($validated['nome']));
+        $cliente->email = isset($validated['email']) ? strtolower($validated['email']) : null;
+        $cliente->numero = $validated['numero'];
+        $cliente->endereco = isset($validated['endereco']) ? strtolower($this->removeAcentos($validated['endereco'])) : null;
+        $cliente->save();
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
+    }
+
+
+    public function reativar(Request $request, Cliente $cliente)
     {
         $cliente->status = "ativo";
         $cliente->save();

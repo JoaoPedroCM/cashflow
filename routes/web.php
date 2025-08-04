@@ -55,10 +55,13 @@ Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transaco
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
 Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+Route::get('/editar_cliente/{cliente}', [ClienteController::class, 'edit'])->name('clientes.edit');
+Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+
 
 #CLIENTES INATIVOS
 Route::get('/clientes_inativos', [ClienteController::class, 'inativos'])->name('clientes.inativos');
-Route::put('/clientes_inativos/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+Route::put('/clientes_inativos/{cliente}', [ClienteController::class, 'reativar'])->name('clientes.reativar');
 
 #USUÁRIOS
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');

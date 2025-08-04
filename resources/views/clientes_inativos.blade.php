@@ -36,7 +36,7 @@
                 <td>{{$cliente->created_at_formatado}}</td>
                 <td>{{$cliente->updated_at_formatado}}</td>
                 <td>
-                    <form action="{{ route('clientes.update', $cliente->id) }}" method="POST" onsubmit="return confirm('Reativar este cliente?');">
+                    <form action="{{ route('clientes.reativar', $cliente->id) }}" method="POST" onsubmit="return confirm('Reativar {{$cliente->nome}}?');">
                         @csrf
                         @method('PUT')
                         <button type="submit" class="btn btn-link p-0" title="Reativar cliente">
