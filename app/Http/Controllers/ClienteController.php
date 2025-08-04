@@ -16,6 +16,12 @@ class ClienteController extends Controller
         return view('clientes', compact('clientes'));
     }
 
+    public function inativos()
+    {
+        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'inativo')->get();
+        return view('clientes_inativos', compact('clientes_inativos'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -69,7 +75,9 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $cliente->status = "ativo";
+        $cliente->save();
+        return redirect()->back()->with('sucess', 'Cliente reativado!');
     }
 
     /**
@@ -79,7 +87,7 @@ class ClienteController extends Controller
     {
         $cliente->status = "inativo";
         $cliente->save();
-        return redirect()->back()->with('success', 'Cliente excluído com sucesso!');
+        return redirect()->back()->with('success', 'Cliente desativado com sucesso!');
     }
 
     /**

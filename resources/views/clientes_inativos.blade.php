@@ -1,6 +1,6 @@
 @extends('site/layout')
 
-@section('title', 'Clientes')
+@section('title', 'Clientes Inativos')
 
 @section('content')
 
@@ -11,11 +11,7 @@
         </div>
     @endif
 
-    <h1 class="display-6">Clientes
-        <a href="novo_cliente" class="btn btn-success">
-            Novo Cliente<i class="bi bi-plus"></i>
-        </a>
-    </h1>
+    <h1 class="display-6">Clientes Inativos</h1>
     
 
     <table class="table table-striped text-center">
@@ -27,11 +23,11 @@
                 <th class="text-primary">Endereço</th>
                 <th class="text-primary">Data Cadastro</th>
                 <th class="text-primary">Data Alteração</th>
-                <th colspan="2" class="text-primary">Opções</th>
+                <th class="text-primary">Opções</th>
             </tr>
         </thead>
         
-        @foreach ($clientes as $cliente)
+        @foreach ($clientes_inativos as $cliente)
             <tr>
                 <td>{{$cliente->nome}}</td>
                 <td>{{$cliente->email}}</td>
@@ -39,13 +35,12 @@
                 <td>{{$cliente->endereco}}</td>
                 <td>{{$cliente->created_at_formatado}}</td>
                 <td>{{$cliente->updated_at_formatado}}</td>
-                <td><a href="" title="Editar cliente"><i class="bi bi-pencil-square text-primary"></i></a></td>
                 <td>
-                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');">
+                    <form action="{{ route('clientes.update', $cliente->id) }}" method="POST" onsubmit="return confirm('Reativar este cliente?');">
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-link p-0" title="Desativar cliente">
-                            <i class="bi bi-trash3-fill text-danger"></i>
+                        @method('PUT')
+                        <button type="submit" class="btn btn-link p-0" title="Reativar cliente">
+                            <i class="bi bi-plugin text-primary"></i>
                         </button>
                     </form>
                 </td>

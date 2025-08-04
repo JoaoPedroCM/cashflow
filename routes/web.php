@@ -48,8 +48,17 @@ Route::get('/novo_cliente', function () {
 // ROTAS COM CONTROLLER (com lógica)
 // ===========================
 
+#TRANSAÇÕES
 Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
+
+#CLIENTES
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
 Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+#CLIENTES INATIVOS
+Route::get('/clientes_inativos', [ClienteController::class, 'inativos'])->name('clientes.inativos');
+Route::put('/clientes_inativos/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+
+#USUÁRIOS
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
