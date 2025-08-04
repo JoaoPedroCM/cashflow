@@ -12,9 +12,13 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'ativo')->get();
+        $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
+            ->where('status', 'ativo')
+            ->paginate(7);  // paginar direto aqui, sem get()
+
         return view('clientes', compact('clientes'));
     }
+
 
     public function inativos()
     {
