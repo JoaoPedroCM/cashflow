@@ -41,7 +41,7 @@
                 <td>{{$cliente->updated_at_formatado}}</td>
                 <td><a href="" title="Editar cliente"><i class="bi bi-pencil-square text-primary"></i></a></td>
                 <td>
-                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');">
+                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja desativar este cliente?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-link p-0" title="Desativar cliente">
