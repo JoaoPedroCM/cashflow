@@ -86,8 +86,8 @@
                                 {{ Auth::user()->nome }} ({{Auth::user()->tipo_usuario}})
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a href="" class="dropdown-item">Avisos</a></li>
-                                <li><a href="" class="dropdown-item">Configurações</a></li>
+                                <li><a href="avisos" class="dropdown-item">Avisos <i class="bi bi-bell-fill"></i></a></li>
+                                <li><a href="" class="dropdown-item">Configurações <i class="bi bi-gear-fill"></i></a></li>
                                 <li>
                                     <a
                                         class="dropdown-item"

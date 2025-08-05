@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\TransacaoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AvisoController;
 
 // ROTAS DE AUTENTICAÇÃO
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/novo_usuario', function () {
         return view('novo_usuario');
     });
+
 
     // TRANSAÇÕES
     Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
@@ -50,4 +52,8 @@ Route::middleware('auth')->group(function () {
     // USUÁRIOS INATIVOS
     Route::get('/usuarios_inativos', [UsuarioController::class, 'usuarios_inativos'])->name('usuarios_inativos.usuarios_inativos');
     Route::put('/usuarios_inativos/{usuario}', [UsuarioController::class, 'reativar'])->name('usuarios.reativar');
+
+    // AVISOS
+    Route::get('/avisos', [AvisoController::class, 'index'])->name('avisos.index');
+    Route::get('/aviso/{id}', [AvisoController::class, 'show'])->name('aviso.show');
 });
