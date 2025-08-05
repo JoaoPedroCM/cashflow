@@ -34,7 +34,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="painel">CashFlow</a>
+                <a class="navbar-brand" href="{{ url('/painel') }}">CashFlow</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -51,25 +51,24 @@
                     <!-- Menu à esquerda -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="clientes">Clientes</a>
+                            <a class="nav-link" href="{{ route('clientes.index') }}">Clientes</a>
                         </li>
-                        <!-- Links específicos para usuário do tipo Master -->
                         @if(Auth::user()->tipo_usuario === 'master')
                             <li class="nav-item">
-                                <a href="clientes_inativos" class="nav-link">Clientes Inativos</a>
+                                <a href="{{ route('clientes.inativos') }}" class="nav-link">Clientes Inativos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="usuarios" class="nav-link">Usuários</a>
+                                <a href="{{ route('usuarios.index') }}" class="nav-link">Usuários</a>
                             </li>
                             <li class="nav-item">
-                                <a href="usuarios_inativos" class="nav-link">Usuários Inativos</a>
+                                <a href="{{ route('usuarios_inativos.usuarios_inativos') }}" class="nav-link">Usuários Inativos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Alterações</a>
+                                <a href="#" class="nav-link">Alterações</a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="transacoes">Transações</a>
+                            <a class="nav-link" href="{{ route('transacoes.index') }}">Transações</a>
                         </li>
                     </ul>
 
@@ -83,11 +82,11 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                {{ Auth::user()->nome }} ({{Auth::user()->tipo_usuario}})
+                                {{ Auth::user()->nome }} ({{ Auth::user()->tipo_usuario }})
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a href="avisos" class="dropdown-item">Avisos <i class="bi bi-bell-fill"></i></a></li>
-                                <li><a href="" class="dropdown-item">Configurações <i class="bi bi-gear-fill"></i></a></li>
+                                <li><a href="{{ route('avisos.index') }}" class="dropdown-item">Avisos <i class="bi bi-bell-fill"></i></a></li>
+                                <li><a href="#" class="dropdown-item">Configurações <i class="bi bi-gear-fill"></i></a></li>
                                 <li>
                                     <a
                                         class="dropdown-item"
