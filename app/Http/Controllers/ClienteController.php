@@ -22,7 +22,7 @@ class ClienteController extends Controller
 
     public function inativos()
     {
-        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'inativo')->get();
+        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'inativo')->paginate(7);
         return view('clientes_inativos', compact('clientes_inativos'));
     }
 

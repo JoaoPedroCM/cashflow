@@ -47,4 +47,7 @@
             </tr>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center">
+        {{ $clientes_inativos->links('pagination::bootstrap-4') }}
+    </div>
 @endsection
