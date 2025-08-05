@@ -29,7 +29,11 @@
                 <td>{{$usuario->tipo_usuario}}</td>
                 <td>{{$usuario->created_at_formatado}}</td>
                 <td>{{$usuario->updated_at_formatado}}</td>
-                <td><a href="" title="Editar usuário"><i class="bi bi-pencil-square text-primary"></i></a></td>
+                <td>
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}" title="Editar usuário" onclick="return confirm('Editar os dados de {{$usuario->nome}} ?');" class="btn btn-link p-0">
+                        <i class="bi bi-pencil-square text-primary"></i>
+                    </a>
+                </td>
                 <td>
                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja desativar este usuário?');">
                         @csrf
