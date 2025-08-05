@@ -23,7 +23,7 @@
         
         @foreach ($vendas as $venda)
             <tr>
-                <td>{{ $venda->cliente->nome ?? 'Cliente não encontrado' }}</td>
+                <td>{{$venda->cliente->nome ?? 'Cliente não encontrado'}}</td>
                 <td>{{$venda->data_formatada}}</td>
                 <td>{{$venda->moeda}}</td>
                 <td>{{$venda->valor}}</td>
@@ -36,4 +36,7 @@
             </tr>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center">
+        {{ $vendas->links('pagination::bootstrap-4') }}
+    </div>
 @endsection

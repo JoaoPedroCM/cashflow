@@ -9,7 +9,7 @@ class TransacaoController extends Controller
 {
     public function index()
     {
-        $vendas = Venda::with('cliente')->get();
+        $vendas = Venda::with('cliente')->paginate(5);
         return view('transacoes', compact('vendas'));
     }
 }
