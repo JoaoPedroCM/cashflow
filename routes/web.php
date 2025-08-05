@@ -43,6 +43,10 @@ Route::get('/novo_cliente', function () {
     return view('novo_cliente');
 });
 
+Route::get('/novo_usuario', function () {
+    return view('novo_usuario');
+});
+
 
 // ===========================
 // ROTAS COM CONTROLLER (com lógica)
@@ -65,6 +69,7 @@ Route::put('/clientes_inativos/{cliente}', [ClienteController::class, 'reativar'
 
 #USUÁRIOS
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
 Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
 Route::get('/editar_usuario/{usuario}', [UsuarioController::class, 'edit'])->name('usuarios.edit');
 Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');

@@ -37,7 +37,26 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'nullable|email',
+            'numero' => 'required|string|max:20',
+            'endereco' => 'nullable|string|max:255',
+            'senha' => 'required|string|max:255',
+            'tipo_usuario' => 'required|string|max:20',
+        ]);
+
+        $data = [];
+        $data['nome'] = strtolower($this->removeAcentos($validated['nome']));
+        $data['email'] = isset($validated['email']) ? strtolower($validated['email']) : null;
+        $data['numero'] = $validated['numero']; // Não modifica número
+        $data['endereco'] = isset($validated['endereco']) ? strtolower($this->removeAcentos($validated['endereco'])) : null;
+        $data['senha'] = strtolower($this->removeAcentos($validated['senha']));
+        $data['tipo_usuario'] = $validated['tipo_usuario'];
+
+        Usuario::create($data);
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado!');
     }
 
     /**
