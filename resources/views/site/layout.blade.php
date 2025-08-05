@@ -62,7 +62,7 @@
                                 <a href="usuarios" class="nav-link">Usuários</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Usuários Inativos</a>
+                                <a href="usuarios_inativos" class="nav-link">Usuários Inativos</a>
                             </li>
                             <li class="nav-item">
                                 <a href="" class="nav-link">Alterações</a>

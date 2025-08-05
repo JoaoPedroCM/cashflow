@@ -12,8 +12,16 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')->get();
+        $usuarios = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')->where('status', 'ativo')
+            ->paginate(7);
         return view('usuarios', compact('usuarios'));
+    }
+
+    public function usuarios_inativos()
+    {
+        $usuarios_inativos = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')->where('status', 'inativo')
+            ->paginate(7);
+        return view('usuarios_inativos', compact('usuarios_inativos'));
     }
 
     /**
@@ -61,6 +69,15 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        //
+        $usuario->status = "inativo";
+        $usuario->save();
+        return redirect()->back()->with('success', 'Usuário desativado com sucesso!');
+    }
+
+    public function reativar(Request $request, Usuario $usuario)
+    {
+        $usuario->status = "ativo";
+        $usuario->save();
+        return redirect()->back()->with('sucess', 'Usuário reativado!');
     }
 }

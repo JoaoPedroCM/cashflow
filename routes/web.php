@@ -65,3 +65,8 @@ Route::put('/clientes_inativos/{cliente}', [ClienteController::class, 'reativar'
 
 #USUÁRIOS
 Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+
+#USUÁRIOS INATIVOS
+Route::get('/usuarios_inativos', [UsuarioController::class, 'usuarios_inativos'])->name('usuarios_inativos.usuarios_inativos');
+Route::put('/usuarios_inativos/{usuario}', [UsuarioController::class, 'reativar'])->name('usuarios.reativar');
