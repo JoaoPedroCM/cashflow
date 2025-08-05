@@ -62,10 +62,10 @@
                                 <a href="usuarios" class="nav-link">Usuários</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Alterações</a>
+                                <a href="" class="nav-link">Usuários Inativos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">Configurações</a>
+                                <a href="" class="nav-link">Alterações</a>
                             </li>
                         @endif
                         <li class="nav-item">
@@ -86,6 +86,8 @@
                                 {{ Auth::user()->nome }} ({{Auth::user()->tipo_usuario}})
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a href="" class="dropdown-item">Avisos</a></li>
+                                <li><a href="" class="dropdown-item">Configurações</a></li>
                                 <li>
                                     <a
                                         class="dropdown-item"
