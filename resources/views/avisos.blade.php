@@ -11,7 +11,13 @@
         </div>
     @endif
 
-    <h1 class="display-6">Avisos</h1>
+    <h1 class="display-6">Avisos
+        @if(Auth::user()->tipo_usuario === 'master')
+            <a href="novo_aviso" class="btn btn-success">
+                Novo Aviso<i class="bi bi-plus"></i>
+            </a>
+        @endif
+    </h1>
     
 
     <table class="table table-striped text-center">

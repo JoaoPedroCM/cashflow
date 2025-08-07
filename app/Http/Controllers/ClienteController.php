@@ -31,8 +31,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        // Pode retornar a view do formulário de novo cliente, ex:
-        // return view('novo_cliente');
+        //
     }
 
     /**

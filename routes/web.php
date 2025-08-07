@@ -27,6 +27,10 @@ Route::middleware('auth')->group(function () {
         return view('novo_usuario');
     });
 
+    Route::get('/novo_aviso', function () {
+        return view('novo_aviso');
+    });
+
 
     // TRANSAÇÕES
     Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
@@ -56,4 +60,5 @@ Route::middleware('auth')->group(function () {
     // AVISOS
     Route::get('/avisos', [AvisoController::class, 'index'])->name('avisos.index');
     Route::get('/aviso/{id}', [AvisoController::class, 'show'])->name('aviso.show');
+    Route::post('/novo_aviso', [AvisoController::class, 'store'])->name('avisos.store');
 });

@@ -27,7 +27,7 @@ class AvisoController extends Controller
             'aviso' => $request->aviso,
         ]);
 
-        return response()->json($aviso, 201);
+        return redirect()->route('avisos.index')->with('success', 'Aviso enviado!');
     }
 
     // Mostrar um aviso individual
