@@ -13,8 +13,8 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
-            ->where('status', 'ativo')
-            ->paginate(7);  // paginar direto aqui, sem get()
+            ->where('status', 'ativo')->orderBy('nome', 'asc')
+            ->paginate(7);
 
         return view('clientes', compact('clientes'));
     }
@@ -22,7 +22,8 @@ class ClienteController extends Controller
 
     public function inativos()
     {
-        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')->where('status', 'inativo')->paginate(7);
+        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
+            ->where('status', 'inativo')->orderBy('nome', 'asc')->paginate(7);
         return view('clientes_inativos', compact('clientes_inativos'));
     }
 

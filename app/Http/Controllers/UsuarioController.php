@@ -12,15 +12,15 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')->where('status', 'ativo')
-            ->paginate(7);
+        $usuarios = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')
+            ->where('status', 'ativo')->orderBy('nome', 'asc')->paginate(7);
         return view('usuarios', compact('usuarios'));
     }
 
     public function usuarios_inativos()
     {
-        $usuarios_inativos = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')->where('status', 'inativo')
-            ->paginate(7);
+        $usuarios_inativos = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')
+            ->where('status', 'inativo')->orderBy('nome', 'asc')->paginate(7);
         return view('usuarios_inativos', compact('usuarios_inativos'));
     }
 

@@ -10,7 +10,8 @@ class AvisoController extends Controller
     // Listar todos os avisos
     public function index()
     {
-        $avisos = Aviso::select('id', 'assunto', 'created_at')->paginate(5);
+        $avisos = Aviso::select('id', 'assunto', 'created_at')->orderBy('created_at', 'desc')
+            ->paginate(5);
         return view('avisos', compact('avisos'));
     }
 
