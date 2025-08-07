@@ -5,6 +5,12 @@
 @section('content')
     <h1 class="display-6">Transações</h1>
     
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <table class="table table-striped text-center">
         <thead>
@@ -17,7 +23,7 @@
                 <th class="text-primary">Descrição</th>
                 <th class="text-primary">Forma de Pagamento</th>
                 <th class="text-primary">Satus</th>
-                <th colspan="2" class="text-primary">Opções</th>
+                <th class="text-primary">Dar baixa</th>
             </tr>
         </thead>
         
@@ -27,15 +33,23 @@
                 <td>{{$venda->data_formatada}}</td>
                 <td>{{$venda->moeda}}</td>
                 <td>{{$venda->valor}}</td>
-                <td>{{ $venda->valor_convertido ?? $venda->valor }}</td>
+                <td>{{$venda->valor_convertido ?? $venda->valor}}</td>
                 <td>{{$venda->descricao}}</td>
                 <td>{{$venda->forma_pgto}}</td>
                 <td>{{$venda->status}}</td>
-                <td><a href="" title="Editar venda"><i class="bi bi-pencil-square text-primary"></i></a></td>
-                <td><a href="" title="Excluir venda"><i class="bi bi-trash3-fill text-danger"></i></a></td>
+                <td>
+                    @if ($venda->status === 'pendente')
+                        <a href="{{ route('transacao.edit', $venda->id) }}" title="Dar baixa" onclick="return confirm('Dar baixa?')">
+                            <i class="bi bi-credit-card text-warning"></i>
+                        </a>
+                    @else
+                        <i class="bi bi-check-lg text-success" title="Pago"></i>
+                    @endif
+                </td>
             </tr>
         @endforeach
     </table>
+
     <div class="d-flex justify-content-center">
         {{ $vendas->links('pagination::bootstrap-4') }}
     </div>

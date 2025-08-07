@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
     // TRANSAÇÕES
     Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
+    Route::get('/baixa/{venda}', [TransacaoController::class, 'edit'])->name('transacao.edit');
+    Route::put('/baixa/{venda}', [TransacaoController::class, 'update'])->name('transacoes.update');
+
 
     // CLIENTES
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
