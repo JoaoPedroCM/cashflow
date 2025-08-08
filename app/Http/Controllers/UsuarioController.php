@@ -7,34 +7,21 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $usuarios = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')
-            ->where('status', 'ativo')->orderBy('nome', 'asc')->paginate(7);
+            ->where('status', 'ativo')
+            ->orderBy('nome', 'asc')
+            ->paginate(7);
+
         return view('usuarios', compact('usuarios'));
     }
 
-    public function usuarios_inativos()
-    {
-        $usuarios_inativos = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')
-            ->where('status', 'inativo')->orderBy('nome', 'asc')->paginate(7);
-        return view('usuarios_inativos', compact('usuarios_inativos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -49,7 +36,7 @@ class UsuarioController extends Controller
         $data = [];
         $data['nome'] = strtolower($this->removeAcentos($validated['nome']));
         $data['email'] = isset($validated['email']) ? strtolower($validated['email']) : null;
-        $data['numero'] = $validated['numero']; // Não modifica número
+        $data['numero'] = $validated['numero'];
         $data['endereco'] = isset($validated['endereco']) ? strtolower($this->removeAcentos($validated['endereco'])) : null;
         $data['senha'] = strtolower($this->removeAcentos($validated['senha']));
         $data['tipo_usuario'] = $validated['tipo_usuario'];
@@ -59,25 +46,16 @@ class UsuarioController extends Controller
         return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Usuario $usuario)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Usuario $usuario)
     {
         return view('editar_usuario', compact('usuario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Usuario $usuario)
     {
         $validated = $request->validate([
@@ -96,26 +74,32 @@ class UsuarioController extends Controller
         return redirect()->route('usuarios.index')->with('success', 'Usuário atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Usuario $usuario)
     {
         $usuario->status = "inativo";
         $usuario->save();
+
         return redirect()->back()->with('success', 'Usuário desativado com sucesso!');
+    }
+
+    public function usuarios_inativos()
+    {
+        $usuarios_inativos = Usuario::select('id', 'nome', 'email', 'numero', 'endereco', 'tipo_usuario', 'created_at', 'updated_at')
+            ->where('status', 'inativo')
+            ->orderBy('nome', 'asc')
+            ->paginate(7);
+
+        return view('usuarios_inativos', compact('usuarios_inativos'));
     }
 
     public function reativar(Request $request, Usuario $usuario)
     {
         $usuario->status = "ativo";
         $usuario->save();
+
         return redirect()->back()->with('sucess', 'Usuário reativado!');
     }
 
-    /**
-     * Remove acentos e caracteres especiais da string.
-     */
     private function removeAcentos($string)
     {
         $mapa = [

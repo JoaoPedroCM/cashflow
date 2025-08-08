@@ -3,7 +3,11 @@
 @section('title', 'Transações')
 
 @section('content')
-    <h1 class="display-6">Transações</h1>
+    <h1 class="display-6">Transações
+        <a href="nova_transacao" class="btn btn-success">
+            Nova Transação<i class="bi bi-plus"></i>
+        </a>
+    </h1>
     
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

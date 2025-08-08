@@ -4,27 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Venda;
+use App\Models\Cliente;
 
 class TransacaoController extends Controller
 {
     public function index()
     {
         $vendas = Venda::with('cliente')
-            ->orderBy('data', 'desc')->paginate(5);
+            ->orderBy('data', 'desc')
+            ->paginate(5);
+
         return view('transacoes', compact('vendas'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    public function create()
+    {
+        $clientes = Cliente::select('id', 'nome')->get();
+        return view('nova_transacao', compact('clientes'));
+    }
+
+    public function store(Request $request)
+    {
+        // Implementar se necessário
+    }
+
+    public function show(Venda $venda)
+    {
+        // Implementar se necessário
+    }
+
     public function edit(Venda $venda)
     {
         return view('baixa', compact('venda'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Venda $venda)
     {
         $validated = $request->validate([
@@ -38,9 +51,11 @@ class TransacaoController extends Controller
         return redirect()->route('transacoes.index')->with('success', 'Pagamento informado!');
     }
 
-    /**
-     * Remove acentos e caracteres especiais da string.
-     */
+    public function destroy(Venda $venda)
+    {
+        // Implementar se necessário
+    }
+
     private function removeAcentos($string)
     {
         $mapa = [

@@ -7,37 +7,21 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $clientes = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
-            ->where('status', 'ativo')->orderBy('nome', 'asc')
+            ->where('status', 'ativo')
+            ->orderBy('nome', 'asc')
             ->paginate(7);
 
         return view('clientes', compact('clientes'));
     }
 
-
-    public function inativos()
-    {
-        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
-            ->where('status', 'inativo')->orderBy('nome', 'asc')->paginate(7);
-        return view('clientes_inativos', compact('clientes_inativos'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -50,7 +34,7 @@ class ClienteController extends Controller
         $data = [];
         $data['nome'] = strtolower($this->removeAcentos($validated['nome']));
         $data['email'] = isset($validated['email']) ? strtolower($validated['email']) : null;
-        $data['numero'] = $validated['numero']; // Não modifica número
+        $data['numero'] = $validated['numero'];
         $data['endereco'] = isset($validated['endereco']) ? strtolower($this->removeAcentos($validated['endereco'])) : null;
 
         Cliente::create($data);
@@ -58,25 +42,16 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente cadastrado!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Cliente $cliente)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Cliente $cliente)
     {
         return view('editar_cliente', compact('cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Cliente $cliente)
     {
         $validated = $request->validate([
@@ -95,27 +70,32 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
     }
 
+    public function destroy(Cliente $cliente)
+    {
+        $cliente->status = "inativo";
+        $cliente->save();
+
+        return redirect()->back()->with('success', 'Cliente desativado com sucesso!');
+    }
+
+    public function inativos()
+    {
+        $clientes_inativos = Cliente::select('id', 'nome', 'email', 'numero', 'endereco', 'created_at', 'updated_at')
+            ->where('status', 'inativo')
+            ->orderBy('nome', 'asc')
+            ->paginate(7);
+
+        return view('clientes_inativos', compact('clientes_inativos'));
+    }
 
     public function reativar(Request $request, Cliente $cliente)
     {
         $cliente->status = "ativo";
         $cliente->save();
+
         return redirect()->back()->with('sucess', 'Cliente reativado!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cliente $cliente)
-    {
-        $cliente->status = "inativo";
-        $cliente->save();
-        return redirect()->back()->with('success', 'Cliente desativado com sucesso!');
-    }
-
-    /**
-     * Remove acentos e caracteres especiais da string.
-     */
     private function removeAcentos($string)
     {
         $mapa = [

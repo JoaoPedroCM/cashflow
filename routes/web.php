@@ -31,12 +31,12 @@ Route::middleware('auth')->group(function () {
         return view('novo_aviso');
     });
 
-
     // TRANSAÇÕES
     Route::get('/transacoes', [TransacaoController::class, 'index'])->name('transacoes.index');
     Route::get('/baixa/{venda}', [TransacaoController::class, 'edit'])->name('transacao.edit');
     Route::put('/baixa/{venda}', [TransacaoController::class, 'update'])->name('transacoes.update');
-
+    Route::get('/nova_transacao', [TransacaoController::class, 'create'])->name('transacoes.create');
+    Route::post('/nova_transacao', [TransacaoController::class, 'store'])->name('transacoes.store');
 
     // CLIENTES
     Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');

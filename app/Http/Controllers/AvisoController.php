@@ -7,15 +7,20 @@ use App\Models\Aviso;
 
 class AvisoController extends Controller
 {
-    // Listar todos os avisos
     public function index()
     {
-        $avisos = Aviso::select('id', 'assunto', 'created_at')->orderBy('created_at', 'desc')
+        $avisos = Aviso::select('id', 'assunto', 'created_at')
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
+
         return view('avisos', compact('avisos'));
     }
 
-    // Criar um novo aviso
+    public function create()
+    {
+        //
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -23,7 +28,7 @@ class AvisoController extends Controller
             'aviso' => 'required|string',
         ]);
 
-        $aviso = Aviso::create([
+        Aviso::create([
             'assunto' => $request->assunto,
             'aviso' => $request->aviso,
         ]);
@@ -31,11 +36,25 @@ class AvisoController extends Controller
         return redirect()->route('avisos.index')->with('success', 'Aviso enviado!');
     }
 
-    // Mostrar um aviso individual
     public function show($id)
     {
         $aviso = Aviso::findOrFail($id);
 
         return view('aviso', compact('aviso'));
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 }
