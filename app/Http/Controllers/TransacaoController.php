@@ -25,7 +25,31 @@ class TransacaoController extends Controller
 
     public function store(Request $request)
     {
-        // Implementar se necessário
+        $validated = $request->validate([
+            'usuario'     => 'required|exists:clientes,id',
+            'data'        => 'required|date',
+            'forma_pgto'  => 'required|string|max:255',
+            'moeda'       => 'required|string|max:10',
+            'valor'       => 'required|numeric|min:0',
+            'status'      => 'required|string|in:pendente,pago',
+            'descricao'   => 'nullable|string|max:1000',
+        ]);
+
+        $venda = new Venda();
+        $venda->id_cliente = $validated['usuario'];
+        $venda->data = $validated['data'];
+        $venda->forma_pgto = strtolower($validated['forma_pgto']);
+        $venda->moeda = strtoupper($validated['moeda']);
+        $venda->valor = $validated['valor'];
+        $venda->status = strtolower($validated['status']);
+
+        if (!empty($validated['descricao'])) {
+            $venda->descricao = strtolower($this->removeAcentos($validated['descricao']));
+        }
+
+        $venda->save();
+
+        return redirect()->route('transacoes.index')->with('success', 'Transação criada com sucesso!');
     }
 
     public function show(Venda $venda)

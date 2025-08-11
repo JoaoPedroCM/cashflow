@@ -80,7 +80,7 @@
                 <div class="row mb-3">
                     <div class="col-12">
                         <label for="descricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
                     </div>
                 </div>
 
