@@ -101,6 +101,8 @@
         </tbody>
     </table>
 
-    {{ $logs->links() }}
+    <div class="d-flex justify-content-center">
+        {{ $logs->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 @endsection
