@@ -23,7 +23,7 @@
                 <th class="text-primary">Data</th>
                 <th class="text-primary">Moeda</th>
                 <th class="text-primary">Valor</th>
-                <th class="text-primary">Valor Convertido</th>
+                <th class="text-primary">Cotação da Época</th>
                 <th class="text-primary">Descrição</th>
                 <th class="text-primary">Forma de Pagamento</th>
                 <th class="text-primary">Satus</th>
@@ -37,7 +37,7 @@
                 <td>{{$venda->data_formatada}}</td>
                 <td>{{$venda->moeda}}</td>
                 <td>{{$venda->valor}}</td>
-                <td>{{$venda->valor_convertido ?? $venda->valor}}</td>
+                <td>R$: {{ number_format($venda->valor_convertido ?? $venda->valor, 2, ',', '.') }}</td>
                 <td>{{$venda->descricao}}</td>
                 <td>{{$venda->forma_pgto}}</td>
                 <td>{{$venda->status}}</td>

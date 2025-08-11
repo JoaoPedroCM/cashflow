@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Venda;
 use App\Models\Cliente;
+// Para trabalhar com API de conversão de moedas em novos registros feitos no sistema
+use Illuminate\Support\Facades\Http;
+
 
 class TransacaoController extends Controller
 {
@@ -23,6 +26,10 @@ class TransacaoController extends Controller
         return view('nova_transacao', compact('clientes'));
     }
 
+    /* 
+        Armazena os dados de novas transações, inserindo na coluna valor_convertido
+        a cotação do dia em que o novo registro é feito.
+    */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -47,9 +54,36 @@ class TransacaoController extends Controller
             $venda->descricao = strtolower($this->removeAcentos($validated['descricao']));
         }
 
+        // Converte para BRL (reais) usando API
+        $moedaOrigem = strtoupper($validated['moeda']); // Ex: USD
+        $moedaDestino = 'BRL'; // moeda destino fixa ou dinâmica
+        $valorOriginal = $validated['valor'];
+
+        $taxaCambio = $this->getTaxaCambio($moedaOrigem, $moedaDestino);
+        if ($taxaCambio) {
+            $venda->valor_convertido = $valorOriginal * $taxaCambio;
+        } else {
+            $venda->valor_convertido = null; // ou o próprio valor original
+        }
+
         $venda->save();
 
         return redirect()->route('transacoes.index')->with('success', 'Transação criada com sucesso!');
+    }
+
+    // Função para buscar taxa de câmbio via API ExchangeRate.host
+    private function getTaxaCambio($from, $to)
+    {
+        $response = Http::get("https://api.exchangerate-api.com/v4/latest/{$from}");
+
+        if ($response->successful()) {
+            $rates = $response->json()['rates'] ?? null;
+            if ($rates && isset($rates[$to])) {
+                return $rates[$to];
+            }
+        }
+
+        return null; // falha ao obter taxa
     }
 
     public function show(Venda $venda)
