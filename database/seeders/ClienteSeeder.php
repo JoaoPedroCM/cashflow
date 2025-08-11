@@ -62,7 +62,7 @@ class ClienteSeeder extends Seeder
         ]);
 
         Cliente::create([
-            'nome' => 'joão pedro',
+            'nome' => 'joao pedro',
             'email' => 'joaopedro@exemplo.com',
             'numero' => '41999887766',
             'endereco' => 'avenida brasil, 500',
@@ -126,7 +126,7 @@ class ClienteSeeder extends Seeder
         ]);
 
         Cliente::create([
-            'nome' => 'andré lopes',
+            'nome' => 'andre lopes',
             'email' => 'andrelopes@exemplo.com',
             'numero' => '41910111213',
             'endereco' => 'rua das acácias, 78',
@@ -134,7 +134,7 @@ class ClienteSeeder extends Seeder
         ]);
 
         Cliente::create([
-            'nome' => 'letícia santos',
+            'nome' => 'leticia santos',
             'email' => 'leticiasantos@exemplo.com',
             'numero' => '41914151617',
             'endereco' => 'avenida central, 99',
