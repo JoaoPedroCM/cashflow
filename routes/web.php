@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\TransacaoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AvisoController;
+use App\Http\Controllers\AlteracoesController;
 
 // ROTAS DE AUTENTICAÇÃO
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -64,4 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/avisos', [AvisoController::class, 'index'])->name('avisos.index');
     Route::get('/aviso/{id}', [AvisoController::class, 'show'])->name('aviso.show');
     Route::post('/novo_aviso', [AvisoController::class, 'store'])->name('avisos.store');
+
+    // ALTERAÇÕES
+    Route::get('/alteracoes', [AlteracoesController::class, 'index'])->name('alteracoes.index');
 });

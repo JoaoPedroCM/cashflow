@@ -64,7 +64,7 @@
                                 <a href="{{ route('usuarios_inativos.usuarios_inativos') }}" class="nav-link">Usuários Inativos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Alterações</a>
+                                <a href="{{ route('alteracoes.index')}}" class="nav-link">Alterações</a>
                             </li>
                         @endif
                         <li class="nav-item">
