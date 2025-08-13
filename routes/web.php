@@ -7,11 +7,22 @@ use App\Http\Controllers\TransacaoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AvisoController;
 use App\Http\Controllers\AlteracoesController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
-// ROTAS DE AUTENTICAÇÃO
+// ROTAS DE AUTENTICAÇÃO PÚBLICAS
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// RECUPERAÇÃO DE SENHA (públicas)
+Route::get('/redefinir_senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/redefinir_senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+Route::get('/resetar_senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/resetar_senha', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
 
 // ROTAS QUE EXIGEM AUTENTICAÇÃO
 Route::middleware('auth')->group(function () {

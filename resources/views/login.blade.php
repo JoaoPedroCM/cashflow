@@ -37,6 +37,9 @@
           <input type="password" class="form-control" id="senha" name="senha" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        <div class="text-center mt-3">
+          <a href="{{ route('password.request') }}">Esqueci minha senha</a>
+        </div>
       </form>
     </div>
   </main>
