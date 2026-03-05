@@ -37,3 +37,21 @@ Sistema web para controle de fluxo de caixa, vendas e registro de pagamentos vol
 
 > [!IMPORTANT]
 > **OBSERVAÇÃO:** Para fazer o login e testar o projeto, há uma lista de usuários (master e comum) listados em `database/seeders/UsuarioSeeder.php`.
+> Para um teste rápido use os seguintes usuários fictícios:
+<table>
+    <tr>
+        <th>Usuário</th>
+        <th>Senha</th>
+        <th>Acesso</th>
+    </tr>
+    <tr>
+        <td>joaopedro@exemplo.com </td>
+        <td>joao123</td>
+        <td>Master</td>
+    </tr>
+    <tr>
+        <td>henrysantos@exemplo.com </td>
+        <td>henry123</td>
+        <td>Comum</td>
+    </tr>
+</table>
