@@ -16,8 +16,13 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // RECUPERAÇÃO DE SENHA (públicas)
-Route::get('/redefinir_senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-Route::post('/redefinir_senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/redefinir-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])
+    ->name('password.request');
+
+// Processa o envio (POST) com a proteção de 3 tentativas por minuto
+Route::post('/redefinir-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+    ->middleware('throttle:3,1')
+    ->name('password.email');
 
 Route::get('/resetar_senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/resetar_senha', [ResetPasswordController::class, 'reset'])->name('password.update');

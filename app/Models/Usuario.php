@@ -12,27 +12,13 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
     protected $fillable = ['nome', 'email', 'senha', 'numero', 'endereco', 'tipo_usuario', 'status'];
 
     protected $hidden = ['senha'];
 
-    // Mutator para encriptar a senha ao salvar
-    public function setSenhaAttribute($value)
-    {
-        $this->attributes['senha'] = bcrypt($value);
-    }
-
     public function getAuthPassword()
     {
         return $this->senha;
-    }
-
-    public function logout()
-    {
-        Auth::logout(); // Desloga o usuário da sessão
-
-        return redirect('/'); // Redireciona para a página de login (raiz)
     }
 
     // Função para converter o padrão de data americano para o brasileiro
@@ -46,21 +32,20 @@ class Usuario extends Authenticatable
         return Carbon::parse($this->updated_at)->format('d/m/Y');
     }
 
-    //Função para formatar o número do telefone do cliente e melhorar a exibição
+    // Função para formatar o número do telefone
     public function getNumeroFormatadoAttribute()
     {
-        $numero = preg_replace('/\D/', '', $this->numero); // remove tudo que não é número
+        $numero = preg_replace('/\D/', '', $this->numero); 
 
         if (strlen($numero) === 11) {
             return sprintf(
                 '(%s) %s-%s',
-                substr($numero, 0, 2),     // DDD
-                substr($numero, 2, 5),     // Prefixo
-                substr($numero, 7)         // Sufixo
+                substr($numero, 0, 2),
+                substr($numero, 2, 5),
+                substr($numero, 7)
             );
         }
 
-        // Caso o número esteja fora do padrão esperado
         return $this->numero;
     }
 }
