@@ -1,0 +1,57 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cashflow-app
+    container_name: cashflow-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - cashflow-network
+
+  # Banco de Dados MySQL
+  db:
+    image: mysql:8.0
+    container_name: cashflow
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    networks:
+      - cashflow-network
+
+  # Servidor Web Nginx
+  nginx:
+    image: nginx:alpine
+    container_name: cashflow-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - cashflow-network
+  
+    # phpMyAdmin para gerenciar o banco via navegador
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: cashflow-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db # Nome do serviço do banco no docker-compose
+    networks:
+      - cashflow-network
+
+networks:
+  cashflow-network:
+    driver: bridge
